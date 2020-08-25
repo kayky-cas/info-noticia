@@ -40,7 +40,7 @@ class Usuario{
         if (!isset($_SESSION['user'])){
             $this->login();
         }
-        else {
+        else if ($_SESSION['user']->cargo>0){
             $this->listar();
         }
 
@@ -120,7 +120,8 @@ class Usuario{
     public function autenticar(){
         $conexao = Conexao::getInstance();
         $email = $_POST['email'];
-        $sql = 'SELECT senha FROM usuario WHERE email="'.$email.'"';
+        $sql = 'SELECT senha
+                FROM usuario WHERE email="'.$email.'"';
         $resultado = $conexao->query($sql);
         $senha = $resultado->fetch(PDO::FETCH_OBJ);
         if (!$senha) {
@@ -134,11 +135,16 @@ class Usuario{
                 $sql = 'SELECT * FROM usuario WHERE email="'.$email.'"';
                 $resultado = $conexao->query($sql);
                 $_SESSION['user'] = $resultado->fetch(PDO::FETCH_OBJ);
-                if ($_SESSION['user']->primeira_vez){
+                $resultado = $conexao->query('SELECT primeira_vezCol FROM primeira_vez WHERE usuario_id_usuario = '.$_SESSION['user']->id_usuario);
+                $primeira_vez = $resultado->fetch(PDO::FETCH_OBJ);
+                if ($primeira_vez->primeira_vezCol == '1'){
                     $this->senha();
 
                 }
-                header('Location:'.HOME_URI);
+                else{
+                    header('Location:'.HOME_URI);
+
+                }
             }
             else{
                 $this->login();
@@ -151,7 +157,11 @@ class Usuario{
         header('Location:'.HOME_URI);
     }
 
-    public function editar($id){
-        include 'editar.php'
+    public function editar($usuarioString){
+        list($id, $nome, $email, $funcao) = explode('!', $usuarioString);
+        $conexao = Conexao::getInstance();
+        $sql = 'UPDATE usuario SET nome = "'.$nome.'", email = "'.$email.'", cargo = "'.$funcao.'" WHERE id_usuario = '.$id;
+        if ($conexao->query($sql));
+        header("location:".HOME_URI."usuario");
     }
 }

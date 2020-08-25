@@ -121,12 +121,27 @@ class Noticia{
         $this->listar();
     }
 
+    public function alterar($noticiaString){
+        list($id, $titulo, $descricao) = explode('¿', $noticiaString);
+        $conexao = Conexao::getInstance();
+        $sql = 'UPDATE noticia SET titulo = "'.$titulo.'", descricao = "'.$descricao.'" WHERE id_noticia ='.$id;
+        if ($conexao->query($sql)){
+            header("location:".HOME_URI."noticia");
+
+        }
+        else{
+            echo "erro";
+        }
+    }
+
     public function listar(){
         $conexao=Conexao::getInstance();
-        $sql="SELECT id, titulo, descricao, DATE_FORMAT(data, '%d/%m/%Y') AS data,
-        (SELECT nome FROM usuario WHERE id=noticia.usuario_id)AS nome_usuario 
+        $sql="SELECT id_noticia, titulo, descricao, DATE_FORMAT(data, '%d/%m/%Y') AS data,
+        (SELECT nome FROM usuario WHERE id_usuario=noticia.usuario_id_usuario)AS nome_usuario,
+        usuario_id_usuario,
+        imagem
         FROM noticia
-        ORDER BY id DESC LIMIT 5";
+        ORDER BY id_noticia DESC LIMIT 5";
         
         $resultado=$conexao->query($sql);
         $noticias=null;
@@ -140,17 +155,19 @@ class Noticia{
 
     public function ver($id){
         $conexao=Conexao::getInstance();
-        $sql="SELECT id, titulo, descricao, DATE_FORMAT(data, '%d/%m/%Y') AS data,
-        (SELECT nome FROM usuario WHERE id=noticia.usuario_id)AS nome_usuario 
-        FROM noticia
-        WHERE id=".$id;
+        $sql="SELECT id_noticia, titulo, descricao, DATE_FORMAT(data, '%d/%m/%Y') AS data,
+        (SELECT nome FROM usuario WHERE id_usuario=n.usuario_id_usuario)AS nome_usuario,
+        usuario_id_usuario,
+        imagem
+        FROM noticia n
+        WHERE id_noticia=".$id;
 
         $resultado=$conexao->query($sql);
         $noticia=$resultado->fetch(PDO::FETCH_OBJ);
 
         include "Comentario.php";
         $comentario = new Comentario();
-        $noticia->comentarios = $comentario->listar($noticia->id);
+        $noticia->comentarios = $comentario->listar($id);
 
         include HOME_DIR."view/paginas/noticias/noticia.php";
     }

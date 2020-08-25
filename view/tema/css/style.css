@@ -125,7 +125,7 @@ nav ul li a:hover{/*Evento passagem do mouse*/
 }
 
 nav ul li a:active{/*Evento clique do mouse*/
-	background-color:red; /*Define cor de fundo*/
+	background-color: #ff0000; /*Define cor de fundo*/
 }
 
 
@@ -137,6 +137,64 @@ img {
 .msg{
 	width:90%;
 }
+
+.noticia{
+	font-size: 20px;
+	width: 60%;
+	position: relative;
+	left: 20%;
+
+}
+.noticia div{
+	width: 100%;
+}
+.noticia div img{
+	width: 100%;
+	max-height: 300px;
+	object-fit: cover;
+}
+.floatRight{
+	float: right;
+}
+.inputTitulo{
+	width: 100%;
+	border: 0;
+}
+
+.inputDesc{
+	width: 100%;
+	height: 300px;
+}
+.aNoticia{
+	text-decoration: none;
+}
+
+
+#divComentarios{
+	width: 60%;
+	position: relative;
+	left: 20%;
+}
+.divComentario{
+	background-color: #585858;
+	width: 60%;
+	position: relative;
+	left: 20%;
+	/*padding: 5px;*/
+	border: 1px solid #585858;
+	border-radius: 10px;
+}
+#divAutorComent{
+	padding: 5px;
+	border-radius: 10px;
+	background-color: #f8f6f6;
+}
+ #divDescComent{
+	 padding: 20px;
+	 border-radius: 10px;
+	 font-size: 15px;
+	 color: #f8f6f6;
+ }
 
 
 @media only screen and (min-width:1024px){/*Para resoluções acima de 1024px*/

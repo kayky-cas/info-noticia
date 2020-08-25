@@ -27,7 +27,7 @@
 			<?php 
 			if(isset($_SESSION['user'])){
 
-				echo
+                echo
                 '
                  <div>
                     <span>'.$_SESSION['user']->nome.'</span>

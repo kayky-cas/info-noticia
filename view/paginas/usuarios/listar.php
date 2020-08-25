@@ -37,11 +37,11 @@
             else{
                $botoes =
                    '
-                   <a href="'.HOME_URI.'usuario/deletar/'.$usuarios->id_usuario.'" class="btn-danger">
-                        <span class = "glyphicon glyphicon-trash">
-                   </a>
-                   <a href="'.HOME_URI.'usuario/editar/'.$usuarios->id_usuario.'" class="btn-primary">
+                   <btn onclick="edit('.$usuarios->id_usuario.')" class="btn-primary" id="botaoAzul">
                         <span class = "glyphicon glyphicon-edit">
+                   </btn>
+                   <a href="'.HOME_URI.'usuario/deletar/'.$usuarios->id_usuario.'" class="btn-danger" id="botaoVerm">
+                        <span class = "glyphicon glyphicon-trash">
                    </a>
                    ';
             }
@@ -49,13 +49,12 @@
             '
             <tr>
                 <td>'.$usuarios->id_usuario.'</td>
-                <td>'.$usuarios->nome.'</td>
-                <td>'.$usuarios->email.'</td>
-                <td>'.$funcao.'</td>
+                <td id="nome'.$usuarios->id_usuario.'">'.$usuarios->nome.'</td>
+                <td id="email'.$usuarios->id_usuario.'">'.$usuarios->email.'</td>
+                <td id="funcao'.$usuarios->id_usuario.'">'.$funcao.'</td>
                 <td>
                     '.$botoes.'
 				</td>
-
             </tr>
             ';
         }
