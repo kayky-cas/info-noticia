@@ -22,9 +22,7 @@ body {
 	/*margin: 50px;*/
 
 }
-.spanData{
-	float: left;
-}
+
 .spanAutor{
 	float: right;
 }
@@ -74,16 +72,48 @@ footer p{
 	color:#fff;
 	text-align:center;
 }
-
+#divBut{
+	top: 30px;
+	width: 70%;
+	position: relative;
+	left: 15%;
+}
+#divButs button{
+	width: 49%;
+}
+#divButs a{
+	width: 49%;
+	margin-left: 1%;
+}
+#divForm{
+	/*border-radius: 20px;*/
+	/*padding: 10px 10px 50px;*/
+	/*border: 3px solid #383838;*/
+	width: 100%;
+	position: relative;
+	/*left: 15%;*/
+}
 main{
 	min-height:80vh;
 	width: 100%;
 	/*margin: 0 auto;*/
-	background: #fff;
+	background-color: #FFFF;
 	float:left;
 	padding:20px;
 }
-
+.noticia{
+	width: 90%;
+	position: relative;
+	left: 5%;
+}
+#divComentarios{
+	display: none;
+}
+.noticia img{
+	object-position: center;
+	object-fit: cover;
+	max-height: 300px;
+}
 .displayNone{
 	display: none;
 }
@@ -133,7 +163,9 @@ main{
 	height:35px; 
 	margin-top:40px
 }
-
+#divTable{
+	font-size: 12px;
+}
 img {
 	max-width: 100%;
 	height: auto;
@@ -143,58 +175,30 @@ img {
 	width:90%;
 }
 
-.noticia{
-	font-size: 20px;
-	width: 90%;
+
+
+#adicionarComentario{
+	width: 30%;
 	position: relative;
-	left: 5%;
-
+	left: 35%;
 }
-.noticia div{
-	width: 100%;
-}
-.noticia div img{
-	width: 100%;
-	max-height: 300px;
-	object-fit: cover;
-}
-
-.inputTitulo{
-	width: 100%;
-	border: 0;
-}
-
-.inputDesc{
-	width: 100%;
-	height: 300px;
-}
-.aNoticia{
-	text-decoration: none;
-	color: #383838;
-}
-.aNoticia:hover{
-	text-decoration: none;
-	color: #383838;
-}
-
-
 #divComentarios{
-	width: 60%;
+	width: 100%;
 	position: relative;
-	left: 20%;
+	left: 0;
 }
 .divComentario{
 	background-color: #585858;
-	width: 60%;
+	width: 100%;
 	position: relative;
-	left: 20%;
+	left: 0;
 	/*padding: 5px;*/
 	border: 1px solid #585858;
-	border-radius: 10px;
+	border-bottom-radiuss: 10px;
 }
 #divAutorComent{
 	padding: 5px;
-	border-radius: 10px;
+	border: 1px solid #585858;
 	background-color: #f8f6f6;
 }
 #divDescComent{
@@ -209,10 +213,10 @@ img {
 
  @media only screen and (min-width:1024px){/*Para resoluções acima de 1024px*/
 	header, nav, main, footer, #msg{
-		width:70%;
-		margin-left:15%;
+		width:100%;
+		/*margin-left:10%;*/
 	}
-	
+
 	/*nav ul li a{*/
 	/*	float:left; !*Fluído a esquerda*!*/
 	/*	margin:15px;*/
@@ -223,8 +227,43 @@ img {
 	/*	list-style:none;!*Remove marcador do item da lista*!*/
 	/*}*/
 
-	
+	#divTable{
+		font-size: 20px;
+		width: 70%;
+		position: relative;
+		left: 15%;
+	}
 	#icon-menu{
 		display:none;
-	}	
+	}
+	 #divBut{
+		 top: 30px;
+		 width: 70%;
+		 position: relative;
+		 left: 15%;
+	 }
+	 #divForm{
+		 /*border-radius: 20px;*/
+		 /*padding: 10px 10px 50px;*/
+		 /*border: 3px solid #383838;*/
+		 width: 40%;
+		 position: relative;
+		 left: 30%;
+	 }
+	 .noticia{
+		 left: 25%;
+		 width: 50%;
+	 }
+	 #divComentarios{
+		 width: 60%;
+		 left: 20%;
+	 }
+	 .divComentario{
+		 width: 60%;
+		 left: 20%;
+	 }
+	 .imgNoti{
+		 object-fit: cover;
+		 height: 200px;
+	 }
 }

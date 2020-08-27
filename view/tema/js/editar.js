@@ -18,19 +18,19 @@ function edit(id) {
     };
 }
 function editNoticia(id) {
-    const divTitulo = document.querySelector('#divTitulo'+id);
-    const divDescricao = document.querySelector('#divDescricao'+id);
-    const divBotoes = document.querySelector('#divNoticiaB'+id);
-    const botaoAzul = document.querySelector('#botaoAzulNoticia'+id);
+    const divTitulo = document.querySelector('#divTitulo');
+    const divDescricao = document.querySelector('#divDescricao');
+    const divBotoes = document.querySelector('#divNoticiaB');
 
-    oldTitulo = document.querySelector('#titulo'+id).innerHTML;
-    oldDesc = divDescricao.innerHTML;
+    oldTitulo = document.querySelector('#titulo').innerHTML;
+    oldDesc = document.querySelector('#descricao').innerHTML;
 
-    divTitulo.innerHTML = '<input class="inputTitulo bg-info" name="editTitulo" type="text" value="'+oldTitulo+'" id="editTitulo">'
-    divDescricao.innerHTML = '<textarea class="inputDesc" rows="10" cols="100" id="editDesc">'+oldDesc+'</textarea>';
+    divTitulo.innerHTML = '<input class="inputTitulo" style="width: 100%" name="editTitulo" id="editTitulo" type="text" value="'+oldTitulo+'">'
+    divDescricao.innerHTML = '<textarea style="width: 100%" class="inputDesc" id="editDesc">'+oldDesc+'</textarea>';
 
+    divBotoes.innerHTML = '<button id="salvarEditNoticia" class="btn btn-primary"><i class="material-icons">done</i></button><a href="" class="btn btn-danger"><i class="material-icons">clear</i></a>'
 
-    divBotoes.innerHTML = '<button class="btn btn-primary" id="salvarEditNoticia">Salvar</button><a href="" class="btn btn-danger">Cancelar</a>';
+    // divBotoes.innerHTML = '<button class="btn btn-primary" id="salvarEditNoticia">Salvar</button><a href="" class="btn btn-danger">Cancelar</a>';
     document.querySelector('#salvarEditNoticia').onclick = function (){
         window.location.href = urlPagina+'noticia/alterar/'+id+'¿'+document.querySelector('#editTitulo').value+'¿'+document.querySelector('#editDesc').value;
     };

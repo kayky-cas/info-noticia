@@ -110,8 +110,7 @@ class Usuario{
 
                 }
             }
-            $inicio = new Inicio();
-            $inicio->index();
+            header('Location:'.HOME_URI);
         }
         else{
 //            $msg['msg'] = "Ocorreu um erro ao alterar a senha!";
@@ -128,11 +127,11 @@ class Usuario{
         $senha = $resultado->fetch(PDO::FETCH_OBJ);
         if (!$senha) {
             if (!isset($_SESSION['msg'])){
-                $mensagem = new stdClass();
-                $mensagem->mensagem = 'Email ou senha invalidos!';
-                $mensagem->display = 'displayBlock';
-                $mensagem->tipo = 'danger';
-                $_SESSION['msg'] = $mensagem;
+//                $mensagem = new stdClass();
+//                $mensagem->mensagem = 'Email ou senha invalidos!';
+//                $mensagem->display = 'displayBlock';
+//                $mensagem->tipo = 'danger';
+//                $_SESSION['msg'] = $mensagem;
 
             }
             $this->login();
@@ -149,8 +148,7 @@ class Usuario{
 
                 }
                 else{
-                    $inicio = new Inicio();
-                    $inicio->index();
+                    header('Location:'.HOME_URI);
 
                 }
             }
@@ -162,7 +160,7 @@ class Usuario{
 
     public function logout(){
         session_destroy();
-
+        $this->login();
     }
 
     public function editar($usuarioString){
@@ -170,8 +168,7 @@ class Usuario{
         $conexao = Conexao::getInstance();
         $sql = 'UPDATE usuario SET nome = "'.$nome.'", email = "'.$email.'", cargo = "'.$funcao.'" WHERE id_usuario = '.$id;
         if ($conexao->query($sql));
-        $inicio = new Inicio();
-        $inicio->index();
+        header("location:".HOME_URI."usuario");
     }
 }
 

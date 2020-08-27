@@ -1,11 +1,12 @@
 
 <main>
 <div class="alert alert-sm alert-primary" role="alert">
-    Só professores e administradores podem ver os usuarios cadastrados, e só administradores podem excluir contas!
+    Só professores e administradores podem ver os usuarios cadastrados, e só administradores podem excluir, editar e adicionar contas!
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+<div id="divTable">
 <h1>Usuários</h1>
 <table class="table table-dark">
     <thead>
@@ -14,11 +15,7 @@
             <th>Nome</th>
             <th>Email</th>
             <th>Função</th>
-            <?php
-            if ($_SESSION['user']->cargo==2){
-                echo '<th><a href="'.HOME_URI.'usuario/criar" id="adUser" class="btn btn-sm btn-light">ADICIONAR<br>USUÁRIO</a></th>';
-            }
-            ?>
+
         </tr>
     </thead>
     <tbody>
@@ -67,6 +64,13 @@
     ?>
     </tbody>
 </table>
+    <div id="divBut">
+        <?php
+        if ($_SESSION['user']->cargo==2){
+            echo '<th><a href="'.HOME_URI.'usuario/criar" id="adUser" class="btn btn-block btn-info">ADICIONAR<br>USUÁRIO</a></th>';
+        }
+        ?>
+    </div>
 
-
+</div>
 </main>

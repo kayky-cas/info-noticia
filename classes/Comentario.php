@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Class Comentario
  */
@@ -96,19 +97,18 @@ class Comentario{
     }
 
     /**
-     * @param $id_noticia
-     * @param $comentario
-     * @param $id_usuario
-     * @return bool
+     * @param $stringComentario
+     * @return void
      */
-    public function salvar($id_noticia, $comentario, $id_usuario){
+    public function salvar($stringComentario){
+        list($id_noticia, $id_usuario, $comentario) = explode('¿',$stringComentario);
         $conexao = Conexao::getInstance();
-        $sql = 'INSERT INTO comentario (id_comentario, descricao, noticia_id_noticia, usuario_id_usuario) VALUES(0,"'.$comentario.'","'.$id_noticia.'","'.$id_usuario.'")';
+        $sql = 'INSERT INTO comentario (descricao, noticia_id_noticia, usuario_id_usuario) VALUES("'.$comentario.'","'.$id_noticia.'","'.$id_usuario.'")';
         if ($conexao->query($sql)){
-            return true;
+            header("location:".HOME_URI."noticia/ver/".$id_noticia);
         }
         else {
-            return false;
+
         }
     }
 
@@ -118,7 +118,7 @@ class Comentario{
      */
     public function listar($id_noticia = null){
         $conexao = Conexao::getInstance();
-        $sql = 'SELECT descricao, (SELECT nome FROM usuario WHERE id_usuario = c.usuario_id_usuario) AS autor FROM comentario c WHERE noticia_id_noticia='.$id_noticia;
+        $sql = 'SELECT id_comentario ,descricao, (SELECT nome FROM usuario WHERE id_usuario = c.usuario_id_usuario) AS autor, (SELECT email FROM usuario WHERE id_usuario = c.usuario_id_usuario) AS email, (SELECT id_usuario FROM usuario WHERE id_usuario = c.usuario_id_usuario) AS id_usuario FROM comentario c WHERE noticia_id_noticia='.$id_noticia;
         $resultado = $conexao->query($sql);
         while ($item = $resultado->fetch(PDO::FETCH_OBJ)) {
             $comentarios[] = $item;
@@ -130,6 +130,12 @@ class Comentario{
         else {
             return false;
         }
+    }
+    public function deletar($id,$id_noticia){
+        $conexao = Conexao::getInstance();
+        $sql = 'DELETE FROM comentario WHERE id_comentario='.$id;
+        if ($conexao->query($sql));
+        header("location:".HOME_URI."noticia/ver/".$id_noticia);
     }
 
 }

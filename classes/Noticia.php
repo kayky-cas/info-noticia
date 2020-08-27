@@ -121,6 +121,15 @@ class Noticia{
         $this->listar();
     }
 
+    public function incluir(){
+        $titulo = $_POST['titulo'];
+        $url_imagem = $_POST['imagem'];
+        $descricao = $_POST['descricao'];
+        $conexao = Conexao::getInstance();
+        $sql = 'INSERT INTO noticia (titulo, descricao, data, usuario_id_usuario, imagem) VALUES ("'.$titulo.'", "'.$descricao.'", "'.date('Y/m/d').'",'.$_SESSION['user']->id_usuario.',"'.$url_imagem.'")';
+        if ($conexao->query($sql));
+    }
+
     public function alterar($noticiaString){
         list($id, $titulo, $descricao) = explode('¿', $noticiaString);
         $conexao = Conexao::getInstance();
@@ -132,6 +141,10 @@ class Noticia{
         else{
             echo "erro";
         }
+    }
+
+    public function criar(){
+        include HOME_DIR."view/paginas/noticias/form_noticias.php";
     }
 
     public function listar(){
@@ -157,6 +170,7 @@ class Noticia{
         $conexao=Conexao::getInstance();
         $sql="SELECT id_noticia, titulo, descricao, DATE_FORMAT(data, '%d/%m/%Y') AS data,
         (SELECT nome FROM usuario WHERE id_usuario=n.usuario_id_usuario)AS nome_usuario,
+        (SELECT id_usuario FROM usuario WHERE id_usuario=n.usuario_id_usuario)AS id_usuario,
         usuario_id_usuario,
         imagem
         FROM noticia n
@@ -171,22 +185,7 @@ class Noticia{
 
         include HOME_DIR."view/paginas/noticias/noticia.php";
     }
-    
-    public function comentar(){
-        include "Comentario.php";
-        $comentario = new Comentario();
-        if ($comentario->salvar($_POST['id_noticia'], $_POST['comentario'], $_POST['id_usuario'])){
-            $msg['msg'] = "Comentário adicionado!";
-            $msg['class'] = "success";
-            $_SESSION['msg'] = $msg;
-        }
-        else {
-            $msg['msg'] = "Falha ao adicionar comentário!";
-            $msg['class'] = "danger";
-            $_SESSION['msg'] = $msg;
-        }
-        header("location:".HOME_URI."noticia/ver/".$_POST['id_noticia']);
-    }
+
 
 }
 
