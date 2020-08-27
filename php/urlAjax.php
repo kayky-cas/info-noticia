@@ -1,0 +1,3 @@
+<?php
+    include '../config.php';
+    echo json_encode(HOME_URI);

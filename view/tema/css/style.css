@@ -12,11 +12,32 @@ body {
 	padding: 0;
 	background: #f8f6f6;
 }
+.data{
+	width: 100%;
+
+	/*height: 100px;*/
+}
+
+.data span{
+	/*margin: 50px;*/
+
+}
+.spanData{
+	float: left;
+}
+.spanAutor{
+	float: right;
+}
+
 
 header{
-	width:90%;
+	background-image: url("../imagens/logo.png");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	width:100%;
 	height: 80px;
-	margin:0 auto;
+	margin-bottom:20px;
 	float:left;
 }
 
@@ -27,13 +48,8 @@ header{
 #h-center{
 	width:30%;
 	float:left;
-	padding:auto;
+	/*padding:10px;*/
 }
-#h-user{
-	width:15%;
-	float:right;
-}
-
 .hide{
 	display:none;
 
@@ -47,8 +63,8 @@ header{
 }
 
 footer{
-	width:90%;
-	height: 80px;
+	width:100%;
+	/*height: 80px;*/
 	margin:0 auto;
 	background: #585858;
 	float:left;
@@ -61,13 +77,20 @@ footer p{
 
 main{
 	min-height:80vh;
-	width: 90%;
-	margin: 0 auto;
+	width: 100%;
+	/*margin: 0 auto;*/
 	background: #fff;
 	float:left;
 	padding:20px;
 }
 
+.displayNone{
+	display: none;
+}
+
+.displayBlock{
+	display: block;
+}
 
 #form{
 	width:80%;
@@ -87,16 +110,22 @@ main{
 	width:80%;
 	margin-left:10%;
 }
-#alunos table{
-	width:90%;
+.alerta{
+	margin-top: 10px;
 }
 
-nav{
-	display:none;
-	min-height:35px;
-	width: 90%;
-	float:left;
+
+.botaoAzul{
+	background-color: transparent;
+	border: none;
+	color: #007BFF;
 }
+.botaoVerm{
+	background-color: transparent;
+	border: none;
+	color: #DC3545;
+}
+
 #icon-close-menu{
 	display:none;
 }
@@ -104,30 +133,6 @@ nav{
 	height:35px; 
 	margin-top:40px
 }
-
-nav ul li a{
-	display: block;/*Ajusta o elemento ao elemento*/
-   text-decoration: none;/*Remove sublinhado do link*/
-   font-weight: bold;/*Aplica negrito na fonte*/
-   text-transform: uppercase;/*Transforma caracteres para maiúsculo*/
-   height: 30px;/*Defina altura do hiperlink*/
-	padding-top:10px;/*Define preenchimento superior do hiprlink*/
-   border-bottom: 1px solid #383838;/*Define uma borda no limite inferior*/
-	text-align:center; /*Texto alinhado ao centro*/
-	/*background-color:#FBF900; /*Define cor de fundo*/
-	color:#2b6ca3;
-}
-
-
-nav ul li a:hover{/*Evento passagem do mouse*/
-	background-color:#2b6ca3; /*Define cor de fundo*/
-	color:#fff;
-}
-
-nav ul li a:active{/*Evento clique do mouse*/
-	background-color: #ff0000; /*Define cor de fundo*/
-}
-
 
 img {
 	max-width: 100%;
@@ -140,9 +145,9 @@ img {
 
 .noticia{
 	font-size: 20px;
-	width: 60%;
+	width: 90%;
 	position: relative;
-	left: 20%;
+	left: 5%;
 
 }
 .noticia div{
@@ -153,9 +158,7 @@ img {
 	max-height: 300px;
 	object-fit: cover;
 }
-.floatRight{
-	float: right;
-}
+
 .inputTitulo{
 	width: 100%;
 	border: 0;
@@ -167,6 +170,11 @@ img {
 }
 .aNoticia{
 	text-decoration: none;
+	color: #383838;
+}
+.aNoticia:hover{
+	text-decoration: none;
+	color: #383838;
 }
 
 
@@ -189,33 +197,32 @@ img {
 	border-radius: 10px;
 	background-color: #f8f6f6;
 }
- #divDescComent{
-	 padding: 20px;
-	 border-radius: 10px;
-	 font-size: 15px;
-	 color: #f8f6f6;
- }
+#divDescComent{
+	padding: 20px;
+	border-radius: 10px;
+	font-size: 15px;
+	color: #f8f6f6;
+}
+#adUser{
+	font-size: 14px;
+}
 
-
-@media only screen and (min-width:1024px){/*Para resoluções acima de 1024px*/
+ @media only screen and (min-width:1024px){/*Para resoluções acima de 1024px*/
 	header, nav, main, footer, #msg{
 		width:70%;
 		margin-left:15%;
 	}
 	
-	nav ul li a{
-		float:left; /*Fluído a esquerda*/
-		margin:15px;
-		width:160px;
-	}
+	/*nav ul li a{*/
+	/*	float:left; !*Fluído a esquerda*!*/
+	/*	margin:15px;*/
+	/*	width:160px;*/
+	/*}*/
 
-	nav ul li{
-		list-style:none;/*Remove marcador do item da lista*/
-	}
+	/*nav ul li{*/
+	/*	list-style:none;!*Remove marcador do item da lista*!*/
+	/*}*/
 
-	nav{
-		display:block;
-	}
 	
 	#icon-menu{
 		display:none;

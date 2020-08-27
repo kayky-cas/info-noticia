@@ -1,6 +1,6 @@
-<html>
+
 <main>
-<div class="panel-heading"><h1>Notícias</h1></div>
+<h1>Notícias</h1>
 
 <?php
 if(isset($noticias)){
@@ -15,9 +15,12 @@ if(isset($noticias)){
                 </div>
                 <div id="divNoticiaB<?php echo $noticia->id_noticia?>">
                 <?php
-                    if ($_SESSION['user']->id_usuario == $noticia->usuario_id_usuario||$_SESSION['user']->cargo == 2){
-                        echo '<button id="botaoAzulNoticia'.$noticia->id_noticia.'" onclick="editNoticia('.$noticia->id_noticia.')" class="btn btn-info">Editar  <span class = "glyphicon glyphicon-edit"></button>';
+                    if (isset($_SESSION['user'])){
+                        if ($_SESSION['user']->id_usuario == $noticia->usuario_id_usuario||$_SESSION['user']->cargo == 2){
+                            echo '<button id="botaoAzulNoticia'.$noticia->id_noticia.'" onclick="editNoticia('.$noticia->id_noticia.')" class="btn btn-info"><i class="material-icons">edit</i></button>';
+                        }
                     }
+
                 ?>
                 </div>
 
@@ -29,7 +32,7 @@ if(isset($noticias)){
                 ?>
 
             </div>
-            <div class='data'><span class="label label-success"><?php echo $noticia->data ?></span><span class="label label-success floatRight"><?php echo "Por:".$noticia->nome_usuario ?></span></div>
+            <div class='data'><span class="label label-success spanData"><?php echo $noticia->data ?></span><span class="label label-success spanAutor"><?php echo "Por:".$noticia->nome_usuario ?></span></div>
 
         </div>
     </div>
@@ -42,4 +45,3 @@ if(isset($noticias)){
     
 
 </main>
-</html>

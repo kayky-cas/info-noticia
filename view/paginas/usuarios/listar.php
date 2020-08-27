@@ -1,24 +1,30 @@
 
 <main>
-    <?php
-        if ($_SESSION['user']->cargo==2){
-            echo '<a href="'.HOME_URI.'usuario/criar" class="btn btn-primary">ADICIONAR USUÁRIO(SÓ DISPONIVEIS PARA ADMINISTRADORES)</a>';
-        }
-    ?>
-<table class="table">
+<div class="alert alert-sm alert-primary" role="alert">
+    Só professores e administradores podem ver os usuarios cadastrados, e só administradores podem excluir contas!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<h1>Usuários</h1>
+<table class="table table-dark">
     <thead>
         <tr>
             <th>#ID</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Função</th>
+            <?php
+            if ($_SESSION['user']->cargo==2){
+                echo '<th><a href="'.HOME_URI.'usuario/criar" id="adUser" class="btn btn-sm btn-light">ADICIONAR<br>USUÁRIO</a></th>';
+            }
+            ?>
         </tr>
     </thead>
     <tbody>
     <?php
         $conexao = Conexao::getInstance();
         $resultado = $conexao->query('SELECT * FROM usuario');
-        echo '<h3>Só professores e administradores podem ver os usuarios cadastrados, e só administradores podem excluir contas</h3>';
         while($usuarios = $resultado->fetch(PDO::FETCH_OBJ)){
             switch ($usuarios->cargo){
                 case 0:
@@ -37,11 +43,11 @@
             else{
                $botoes =
                    '
-                   <btn onclick="edit('.$usuarios->id_usuario.')" class="btn-primary" id="botaoAzul">
-                        <span class = "glyphicon glyphicon-edit">
-                   </btn>
-                   <a href="'.HOME_URI.'usuario/deletar/'.$usuarios->id_usuario.'" class="btn-danger" id="botaoVerm">
-                        <span class = "glyphicon glyphicon-trash">
+                   <button onclick="edit('.$usuarios->id_usuario.')" class="btn btn-primary botaoAzul" id="botaoAzul'.$usuarios->id_usuario.'">
+                        <i class="material-icons">edit</i>
+                   </button>
+                   <a href="'.HOME_URI.'usuario/deletar/'.$usuarios->id_usuario.'" class="btn btn-danger botaoVerm" id="botaoVerm'.$usuarios->id_usuario.'">
+                        <i class="material-icons">delete</i>
                    </a>
                    ';
             }
@@ -61,4 +67,6 @@
     ?>
     </tbody>
 </table>
+
+
 </main>

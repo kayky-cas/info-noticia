@@ -37,6 +37,7 @@ class Usuario{
 
 
     public function index(){
+
         if (!isset($_SESSION['user'])){
             $this->login();
         }
@@ -101,14 +102,16 @@ class Usuario{
         $conexao = Conexao::getInstance();
         $sql = 'UPDATE usuario SET senha = "'.md5($_POST['senhaTrocar']).'" WHERE id_usuario = '.$_SESSION['user']->id_usuario;
         if ($conexao->query($sql)){
-            if ($_SESSION['user']->primeira_vez){
+            $resultado = $conexao->query('SELECT primeira_vezCol FROM primeira_vez WHERE usuario_id_usuario = '.$_SESSION['user']->id_usuario);
+            $primeira_vez = $resultado->fetch(PDO::FETCH_OBJ);
+            if ($primeira_vez->primeira_vezCol){
                 $sql = $sql = 'UPDATE primeira_vez SET primeira_vezCol = '.'0'.' WHERE usuario_id_usuario = '.$_SESSION['user']->id_usuario;
-                $conexao->query($sql);
-                $_SESSION['user']->primeira_vez = 0;
+                if ($conexao->query($sql)){
+
+                }
             }
-//            $msg['msg'] = "Senha alterada!";
-//            $msg['class'] = "primary";
-//            $_SESSION['msg'] = $msg;
+            $inicio = new Inicio();
+            $inicio->index();
         }
         else{
 //            $msg['msg'] = "Ocorreu um erro ao alterar a senha!";
@@ -120,14 +123,18 @@ class Usuario{
     public function autenticar(){
         $conexao = Conexao::getInstance();
         $email = $_POST['email'];
-        $sql = 'SELECT senha
-                FROM usuario WHERE email="'.$email.'"';
+        $sql = 'SELECT senha FROM usuario WHERE email="'.$email.'"';
         $resultado = $conexao->query($sql);
         $senha = $resultado->fetch(PDO::FETCH_OBJ);
         if (!$senha) {
-            $msg['msg'] = "Usuário ou senha invalidos!";
-            $msg['class'] = "danger";
-            $_SESSION['msg'] = $msg;
+            if (!isset($_SESSION['msg'])){
+                $mensagem = new stdClass();
+                $mensagem->mensagem = 'Email ou senha invalidos!';
+                $mensagem->display = 'displayBlock';
+                $mensagem->tipo = 'danger';
+                $_SESSION['msg'] = $mensagem;
+
+            }
             $this->login();
         }
         else {
@@ -142,7 +149,8 @@ class Usuario{
 
                 }
                 else{
-                    header('Location:'.HOME_URI);
+                    $inicio = new Inicio();
+                    $inicio->index();
 
                 }
             }
@@ -154,7 +162,7 @@ class Usuario{
 
     public function logout(){
         session_destroy();
-        header('Location:'.HOME_URI);
+
     }
 
     public function editar($usuarioString){
@@ -162,6 +170,9 @@ class Usuario{
         $conexao = Conexao::getInstance();
         $sql = 'UPDATE usuario SET nome = "'.$nome.'", email = "'.$email.'", cargo = "'.$funcao.'" WHERE id_usuario = '.$id;
         if ($conexao->query($sql));
-        header("location:".HOME_URI."usuario");
+        $inicio = new Inicio();
+        $inicio->index();
     }
 }
+
+

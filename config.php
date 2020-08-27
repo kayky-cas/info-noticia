@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	define("HOME_URI", "http://localhost/info-noticia/");
+	define("HOME_URI", "http://192.168.0.133/info-noticia/");
 	define("HOME_DIR", "C:\\xampp\htdocs\info-noticia\\");
 
 	/*Parâmetros de conexão com o banco de dados*/

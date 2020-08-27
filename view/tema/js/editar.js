@@ -3,18 +3,18 @@
 function edit(id) {
 
     nome = document.querySelector('#nome'+id).innerHTML;
-    document.querySelector('#nome'+id).innerHTML = '<input name="editNome" type="text" value="'+nome+'" id="editNome">'
+    document.querySelector('#nome'+id).innerHTML = '<input name="editNome'+id+'" type="text" value="'+nome+'" id="editNome'+id+'">'
     email = document.querySelector('#email'+id).innerHTML;
-    document.querySelector('#email'+id).innerHTML = '<input name="editEmail" type="text" value="'+email+'" id="editEmail">'
-    document.querySelector('#funcao'+id).innerHTML = '<label> <select class="form-control" name="editFuncao" id="editFuncao"> <option value="0">Aluno</option> <option value="1">Professor</option> <option value="2">Administrador</option> </select> </label>'
-    const botaoVerm = document.querySelector('#botaoVerm');
-    const botaoAzul = document.querySelector('#botaoAzul');
-    botaoVerm.innerHTML = 'voltar';
+    document.querySelector('#email'+id).innerHTML = '<input name="editEmail'+id+'" type="text" value="'+email+'" id="editEmail'+id+'">'
+    document.querySelector('#funcao'+id).innerHTML = '<label> <select class="form-control" name="editFuncao'+id+'" id="editFuncao'+id+'"> <option value="0">Aluno</option> <option value="1">Professor</option> <option value="2">Administrador</option> </select> </label>'
+    const botaoVerm = document.querySelector('#botaoVerm'+id);
+    const botaoAzul = document.querySelector('#botaoAzul'+id);
+    botaoVerm.innerHTML = '<i class="material-icons">clear</i>';
     botaoVerm.href = '';
 
-    botaoAzul.innerHTML = 'salvar';
+    botaoAzul.innerHTML = '<i class="material-icons">done</i>';
     botaoAzul.onclick = function () {
-        window.location.href = urlPagina+'usuario/editar/'+id+'!'+document.querySelector('#editNome').value+'!'+document.querySelector('#editEmail').value+'!'+document.querySelector('#editFuncao').value;
+        window.location.href = urlPagina+'usuario/editar/'+id+'!'+document.querySelector('#editNome'+id).value+'!'+document.querySelector('#editEmail'+id).value+'!'+document.querySelector('#editFuncao'+id).value;
     };
 }
 function editNoticia(id) {

@@ -7,9 +7,12 @@
                 </div>
                 <div id="divNoticiaB<?php echo $noticia->id_noticia?>">
                     <?php
-                    if ($_SESSION['user']->id_usuario == $noticia->usuario_id_usuario||$_SESSION['user']->cargo == 2){
-                        echo '<button id="botaoAzulNoticia'.$noticia->id_noticia.'" onclick="editNoticia('.$noticia->id_noticia.')" class="btn btn-info">Editar  <span class = "glyphicon glyphicon-edit"></button>';
+                    if (isset($_SESSION['user'])){
+                        if ($_SESSION['user']->id_usuario == $noticia->usuario_id_usuario||$_SESSION['user']->cargo == 2){
+                            echo '<button id="botaoAzulNoticia'.$noticia->id_noticia.'" onclick="editNoticia('.$noticia->id_noticia.')" class="btn btn-info"><i class="material-icons">edit</i></button>';
+                        }
                     }
+
                     ?>
                 </div>
 
@@ -21,10 +24,13 @@
                 ?>
 
             </div>
-            <div class='data'><span class="label label-success"><?php echo $noticia->data ?></span><span class="label label-success floatRight"><?php echo "Por:".$noticia->nome_usuario ?></span></div>
+            <div class='data'><span class="label label-success"><?php echo $noticia->data ?></span><span class="label label-success autorNoticia"><?php echo "Por:".$noticia->nome_usuario ?></span></div>
 
         </div>
+        <h4>Comentários:</h4>
     </div>
+
+
     <div id="divComentarios">
 
         <?php
