@@ -1,41 +1,86 @@
 <?php
+
+/**
+ * Class Usuario
+ */
 class Usuario{
+    /**
+     * @var integer
+     */
     private $id;
+    /**
+     * @var String
+     */
     private $nome;
+    /**
+     * @var String
+     */
     private $email;
+    /**
+     * @var String
+     */
     private $senha;
 
+    /**
+     * @param $id
+     */
     public function setId($id){
         $this->id=$id;
     }
+
+    /**
+     * @return mixed
+     */
     public function getId(){
         return $this->id;
     }
+
+    /**
+     * @param $nome
+     */
     public function setNome($nome){
         $this->nome=$nome;
     }
-    
+
+    /**
+     * @return mixed
+     */
     public function getNome(){
         return $this->nome;
     }
 
+    /**
+     * @param $email
+     */
     public function setEmail($email){
         $this->email=$email;
     }
-    
+
+    /**
+     * @return mixed
+     */
     public function getEmail(){
         return $this->email;
     }
 
+    /**
+     * @param $senha
+     */
     public function setSenha($senha){
         $this->senha=$senha;
     }
-    
+
+    /**
+     * @return mixed
+     */
     public function getSenha(){
         return $this->senha;
     }
 
 
+    /**
+     *
+     */
     public function index(){
 
         if (!isset($_SESSION['user'])){
@@ -47,14 +92,23 @@ class Usuario{
 
     }
 
+    /**
+     *
+     */
     public function listar(){
         include HOME_DIR."view/paginas/usuarios/listar.php";
     }
 
+    /**
+     *
+     */
     public function criar(){
         include HOME_DIR."view/paginas/usuarios/form_usuario.php";
     }
 
+    /**
+     *
+     */
     public function salvar(){
         $conexao = Conexao::getInstance();
         $sql = 'INSERT INTO usuario (nome, email, senha, cargo) VALUES ("'.$_POST['nomeSalvar'].'","'.$_POST['emailSalvar'].'","'.md5('basico_info').'",'.$_POST['funcaoSalvar'].')';
@@ -70,18 +124,30 @@ class Usuario{
         }
     }
 
+    /**
+     * @param $id
+     */
     public function exibir($id){
         echo "O id do usuario é".$id;
     }
 
+    /**
+     *
+     */
     public function login(){
         include HOME_DIR."view/paginas/usuarios/login.php";
     }
 
+    /**
+     *
+     */
     public function senha(){
         include HOME_DIR."view/paginas/usuarios/senha_padrao.php";
     }
 
+    /**
+     * @param $id
+     */
     public function deletar($id){
         $conexao = Conexao::getInstance();
         $sql = 'DELETE FROM usuario WHERE id_usuario='.$id;
@@ -98,6 +164,9 @@ class Usuario{
         $this->listar();
     }
 
+    /**
+     *
+     */
     public function trocar_senha(){
         $conexao = Conexao::getInstance();
         $sql = 'UPDATE usuario SET senha = "'.md5($_POST['senhaTrocar']).'" WHERE id_usuario = '.$_SESSION['user']->id_usuario;
@@ -119,6 +188,9 @@ class Usuario{
         }
     }
 
+    /**
+     *
+     */
     public function autenticar(){
         $conexao = Conexao::getInstance();
         $email = $_POST['email'];
@@ -158,11 +230,17 @@ class Usuario{
         }
     }
 
+    /**
+     *
+     */
     public function logout(){
         session_destroy();
         $this->login();
     }
 
+    /**
+     * @param $usuarioString
+     */
     public function editar($usuarioString){
         list($id, $nome, $email, $funcao) = explode('!', $usuarioString);
         $conexao = Conexao::getInstance();

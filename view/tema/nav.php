@@ -22,7 +22,7 @@
                             echo '
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Usuário</h6>
-                            <a class="dropdown-item" href="#">'.$_SESSION['user']->nome.'</a>
+                            <a class="dropdown-item">'.$_SESSION['user']->nome.'</a>
                             <a class="dropdown-item btn-danger" href="'.HOME_URI.'usuario/logout">Logout</a>
                             ';
                         }

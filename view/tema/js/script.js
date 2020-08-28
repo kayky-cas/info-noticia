@@ -1,1 +1,1 @@
-const urlPagina = 'http://192.168.0.133/info-noticia/';
+const urlPagina = 'http://localhost/info-noticia/';

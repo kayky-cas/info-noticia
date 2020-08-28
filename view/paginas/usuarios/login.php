@@ -9,7 +9,7 @@
     </div>
     <div id="divForm">
 
-        <form form action="<?php echo HOME_URI;?>usuario/autenticar" method="POST">
+        <form action="<?php echo HOME_URI;?>usuario/autenticar" method="POST">
             <legend>Login</legend>
             <div class="form-group">
                 <label for="inputEmail">Endereço de Email</label>
